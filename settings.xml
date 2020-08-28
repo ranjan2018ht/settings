@@ -1,0 +1,62 @@
+<settings>
+        <mirrors>
+                <mirror>
+                        <!--This sends everything else to /public -->
+                        <id>nexus</id>
+                        <mirrorOf>*</mirrorOf>
+			<!--<url>http://192.168.1.21:8080/nexus/content/groups/public</url> -->
+			 <url>http://airlawacademy.org:8086/nexus/content/groups/public</url> 
+                </mirror>
+
+                <!--This sends everything else to /snapshots -->
+                <!--<mirror>
+
+            <id>airBuildRepos</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://192.168.1.21:8080/nexus/content/repositories/snapshots</url>
+       </mirror>-->
+        </mirrors>
+        <profiles>
+                <profile>
+                        <id>nexus</id>
+                        <!--Enable snapshots for the built in central repo to direct -->
+                        <!--all requests to nexus via the mirror -->
+                        <repositories>
+                                <repository>
+                                        <id>central</id>
+                                        <url>http://central</url>
+                                        <releases>
+                                                <enabled>true</enabled>
+                                        </releases>
+                                        <snapshots>
+                                                <enabled>true</enabled>
+                                        </snapshots>
+                                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <url>http://central</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <!--make the profile active all the time -->
+        <activeProfile>nexus</activeProfile>
+        <!--<activeProfile>airBuildRepos</activeProfile>-->
+    </activeProfiles>
+    <servers>
+        <server>
+            <id>TomcatTestServer</id>
+            <username>tomcat</username>
+            <password>tomcat</password>
+        </server>
+    </servers>
+</settings>
